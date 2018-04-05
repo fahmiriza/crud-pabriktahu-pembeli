@@ -1,0 +1,58 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package grpc;
+
+message AddPembeliReq{
+    int32 IDPembeli=1;
+    string NamaPembeli=2;
+    string NoTelpon=3;
+    string KodeKota=4;
+    int32 Status=5;
+    string CreateBy=6;
+    string CreateOn=7;
+    string UpdateOn=8;
+    string UpdateBy=9;
+
+}
+
+message ReadPembeliResp{
+ repeated ReadPembeliByKotaResp allPembeli =1;
+    
+}
+
+message UpdatePembeliReq{
+    int32 IDPembeli=1;
+    string NamaPembeli=2;
+    string NoTelpon=3;
+    string KodeKota=4;
+    int32 Status=5;
+    string CreateBy=6;
+    string CreateOn=7;
+    string UpdateOn=8;
+    string UpdateBy=9;
+}
+
+message ReadPembeliByKotaReq{
+    string KodeKota=1;
+}
+
+message ReadPembeliByKotaResp{
+    int32 IDPembeli=1;
+    string NamaPembeli=2;
+    string NoTelpon=3;
+    string KodeKota=4;
+    int32 Status=5;
+    string CreateBy=6;
+    string CreateOn=7;
+    string UpdateOn=8;
+    string UpdateBy=9;
+}
+
+service PembeliService{
+    rpc AddPembeli(AddPembeliReq) returns (google.protobuf.Empty) {};
+    rpc ReadPembeli(google.protobuf.Empty) returns (ReadPembeliResp){};
+    rpc UpdatePembeli(UpdatePembeliReq) returns (google.protobuf.Empty){};
+    rpc ReadPembeliByKota(ReadPembeliByKotaReq) returns (ReadPembeliByKotaResp){};
+}
